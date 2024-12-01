@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ManagmentApplication.Models.Participante>
+
+@{
+    ViewData["Title"] = "Reportes de los Proyectos";
+}
+
+<h1>Participantes, Tareas y Proyectos</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Lista de Participantes</h4>
+        <p class="card-description">Lista de participantes con sus tareas y proyectos.</p>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.First().Nombre)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().Correo)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().Telefono)</th>
+                        <th>Tareas y Proyectos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var participante in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => participante.Nombre)</td>
+                            <td>@Html.DisplayFor(modelItem => participante.Correo)</td>
+                            <td>@Html.DisplayFor(modelItem => participante.Telefono)</td>
+                            <td>
+                                <!-- Mostrar las tareas y proyectos -->
+                                @if (participante.IdTareas.Any())
+                                {
+                                    <ul>
+                                        @foreach (var tarea in participante.IdTareas)
+                                        {
+                                            <li>
+                                                <strong>Tarea:</strong> @tarea.Nombre
+                                                <br />
+                                                <strong>Descripción:</strong> @tarea.Descripcion
+                                                <br />
+                                                <strong>Proyecto:</strong> @tarea.IdProyectoNavigation?.Nombre
+                                                <br />
+                                                <strong>Estado:</strong> @tarea.Estado
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <p>No tiene tareas asignadas.</p>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

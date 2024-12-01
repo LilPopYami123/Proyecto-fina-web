@@ -1,0 +1,170 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Estadísticas";
+}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    header {
+        background-color: #007bff;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    h1, h2, h3 {
+        margin: 20px 0;
+    }
+
+    .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+    }
+
+    .btn {
+        display: inline-block;
+        font-size: 16px;
+        color: white;
+        background-color: #007bff;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    form {
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        margin-top: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .statistics {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+    .statistics-title {
+        font-weight: bold;
+    }
+
+    .statistics-value {
+        font-size: 24px;
+    }
+</style>
+
+
+<h1>Estadísticas de Proyectos, Participantes y Tareas</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="statistics-details d-flex align-items-center justify-content-between">
+            <div>
+                <p class="statistics-title">Total Proyectos</p>
+                <h3 class="rate-percentage">@Model.TotalProyectos</h3>
+                <p class="text-success d-flex"><i class="mdi mdi-menu-up"></i><span>+0</span></p>
+            </div>
+            <div>
+                <p class="statistics-title">Total Participantes</p>
+                <h3 class="rate-percentage">@Model.TotalParticipantes</h3>
+                <p class="text-success d-flex"><i class="mdi mdi-menu-up"></i><span>+0</span></p>
+            </div>
+            <div>
+                <p class="statistics-title">Total Tareas</p>
+                <h3 class="rate-percentage">@Model.TotalTareas</h3>
+                <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>-0</span></p>
+            </div>
+            <div class="d-none d-md-block">
+                <p class="statistics-title">Tareas Completadas</p>
+                <h3 class="rate-percentage">@Model.TareasCompletadas</h3>
+                <p class="text-success d-flex"><i class="mdi mdi-menu-up"></i><span>+0</span></p>
+            </div>
+            <div class="d-none d-md-block">
+                <p class="statistics-title">Tareas Pendientes</p>
+                <h3 class="rate-percentage">@Model.TareasPendientes</h3>
+                <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>-0</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<body>
+   
+
+    <main>
+        <section id="intro">
+            <div class="container">
+                <h2>Organiza y Gestiona tus Proyectos</h2>
+                <p>Bienvenido a nuestra aplicación donde podrás gestionar todos tus proyectos, tareas y participantes de forma sencilla y eficiente.</p>
+                <a href="@Url.Action("Create", "Proyectoes")" class="btn">Registrar un Proyecto</a>
+                <a href="@Url.Action("Create", "Tareas")" class="btn">Registrar una Tarea</a>
+                <a href="@Url.Action("Create", "Participantes")" class="btn">Registrar un Participante</a>
+            </div>
+        </section>
+
+        <section id="proyectos" class="info-section">
+            <div class="container">
+                <h2>Proyectos</h2>
+                <p>Administra todos tus proyectos en un solo lugar. Visualiza el estado de cada proyecto y mantén un control total sobre ellos.</p>
+                <a href="@Url.Action("Index", "Proyectoes")" class="btn">Ver Proyectos</a>
+            </div>
+        </section>
+
+        <section id="tareas" class="info-section">
+            <div class="container">
+                <h2>Tareas</h2>
+                <p>Crea y asigna tareas a tus proyectos. Establece fechas de vencimiento y prioriza lo que es más importante.</p>
+                <a href="@Url.Action("Index", "Tareas")" class="btn">Ver Tareas</a>
+            </div>
+        </section>
+
+        <section id="participantes" class="info-section">
+            <div class="container">
+                <h2>Participantes</h2>
+                <p>Agrega y gestiona a los participantes de tus proyectos. Asegúrate de que cada miembro esté alineado con las tareas asignadas.</p>
+                <a href="@Url.Action("Index", "Participantes")" class="btn">Ver Participantes</a>
+            </div>
+        </section>
+
+      
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Gestión de Proyectos. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
